@@ -2,7 +2,7 @@ package br.com.jotace.recruitment_manager.modules.company.useCases;
 
 import br.com.jotace.recruitment_manager.exceptions.UserFoundException;
 import br.com.jotace.recruitment_manager.modules.company.entities.CompanyEntity;
-import br.com.jotace.recruitment_manager.modules.company.entities.CompanyRepository;
+import br.com.jotace.recruitment_manager.modules.company.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -3,6 +3,7 @@ package br.com.jotace.recruitment_manager.modules.company.entities;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
@@ -23,6 +24,8 @@ public class JobEntity {
     private UUID id;
     private String description;
     private String benefits;
+
+    @NotBlank(message = "Esse campo é obrigatório")
     private String level;
 
     @ManyToOne()
