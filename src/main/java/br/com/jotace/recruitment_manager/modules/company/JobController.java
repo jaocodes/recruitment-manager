@@ -1,5 +1,6 @@
 package br.com.jotace.recruitment_manager.modules.company;
 
+import br.com.jotace.recruitment_manager.modules.company.dto.CreateJobDTO;
 import br.com.jotace.recruitment_manager.modules.company.entities.JobEntity;
 import br.com.jotace.recruitment_manager.modules.company.useCases.CreateJobUseCase;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,11 +20,17 @@ public class JobController {
     private CreateJobUseCase createJobUseCase;
 
     @PostMapping("/")
-    public JobEntity create(@Valid @RequestBody JobEntity job, HttpServletRequest request){
+    public JobEntity create(@Valid @RequestBody CreateJobDTO job, HttpServletRequest request){
 
         var companyId = request.getAttribute("company_id");
-        job.setCompanyId(UUID.fromString(companyId.toString()));
 
-        return this.createJobUseCase.execute(job);
+        var jobEntity = JobEntity.builder()
+                .benefits(job.getBenefits())
+                .companyId(UUID.fromString(companyId.toString()))
+                .description(job.getDescription())
+                .level(job.getLevel())
+                .build();
+
+        return this.createJobUseCase.execute(jobEntity);
     }
 }
